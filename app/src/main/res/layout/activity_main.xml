@@ -17,55 +17,105 @@
         android:background="#FF018786"/>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/userInput"
         android:layout_width="130dp"
         android:layout_height="39dp"
         android:text="My Tasks"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.092"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.096"
-        android:textSize="30dp"/>
+        app:layout_constraintVertical_bias="0.096" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="358dp"
-        android:layout_height="409dp"
+        android:layout_width="350dp"
+        android:layout_height="301dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.428"
+        app:layout_constraintVertical_bias="0.32"
         app:srcCompat="@drawable/tasks" />
 
     <Button
         android:id="@+id/addTaskBtn"
         android:layout_width="150dp"
         android:layout_height="65dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginStart="36dp"
         android:text="Add Task"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
-        app:layout_constraintHorizontal_bias="0.203"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="#000000"
         android:textSize="17dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/allTasksBtn"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.717"
         android:background="#FF018786"/>
 
     <Button
         android:id="@+id/allTasksBtn"
         android:layout_width="150dp"
         android:layout_height="65dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginEnd="36dp"
+        android:background="#FF018786"
         android:text="All Tasks"
+        android:textColor="#000000"
+        android:textSize="17dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="17dp"
-        android:background="#FF018786"
-        />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.717" />
+
+    <Button
+        android:id="@+id/newTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="84dp"
+        android:text="Task1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="#FF018786"/>
+
+    <Button
+        android:id="@+id/task2btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="84dp"
+        android:text="Task2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/newTitle"
+        android:background="#FF018786"/>
+
+    <Button
+        android:id="@+id/task3btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="84dp"
+        android:text="Task3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toEndOf="@+id/task2btn"
+        android:background="#FF018786"/>
+
+    <Button
+        android:id="@+id/settingbtn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Setting page"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976"
+        android:background="#FF018786"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
