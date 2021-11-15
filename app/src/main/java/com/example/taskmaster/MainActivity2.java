@@ -1,5 +1,6 @@
 package com.example.taskmaster;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -16,6 +17,12 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
         Button submitted = findViewById(R.id.button3);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Taskmaster");
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         submitted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
