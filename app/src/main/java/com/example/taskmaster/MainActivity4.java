@@ -20,14 +20,19 @@ public class MainActivity4 extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         TextView theTitle = findViewById(R.id.textView7);
+        Bundle extras = getIntent().getExtras();
+        String value = extras.getString("title");
+        theTitle.setText(value);
 
-        String value1 = getIntent().getExtras().get("title").toString();
-        String value2 = getIntent().getExtras().get("title").toString();
-        String value3 = getIntent().getExtras().get("title").toString();
 
-        theTitle.setText(value1);
-        theTitle.setText(value2);
-        theTitle.setText(value3);
+
+//        String value1 = getIntent().getExtras().get("title").toString();
+//        String value2 = getIntent().getExtras().get("title").toString();
+//        String value3 = getIntent().getExtras().get("title").toString();
+//
+//        theTitle.setText(value1);
+//        theTitle.setText(value2);
+//        theTitle.setText(value3);
 
     }
 }

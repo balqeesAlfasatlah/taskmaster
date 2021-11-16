@@ -42,3 +42,23 @@ The all tasks page should just be an image with a back button, it needs no funct
 + The homepage:  should also contain a button to visit the Settings page, and once the user has entered their username, it should display “{username}’s tasks” above the three task buttons.
 
 [![home.jpg](https://i.postimg.cc/BbxC1tjV/home.jpg)](https://postimg.cc/5Q2zh4qB)
+
+---
+
+## Lab 28 - RecyclerViews for Displaying Lists of Data
+
+### Feature Tasks :
+
+1- Task Model : create a Task class, have a title, a body, and a state. The state should be one of “new”, “assigned”, “in progress”, or “complete”.
+
+2- Homepage : refactor your homepage to use a RecyclerView for displaying Task data. 
+
++ Ensure that you can tap on any one of the Tasks in the RecyclerView, and it will appropriately launch the detail page with the correct Task title displayed.
+
+[![recycler-View-Item1.jpg](https://i.postimg.cc/LsFDK3k8/recycler-View-Item1.jpg)](https://postimg.cc/DS5L1sY9)
+
+[![Recycler-View-Item1-Onclick.jpg](https://i.postimg.cc/QMqQLGxf/Recycler-View-Item1-Onclick.jpg)](https://postimg.cc/7CfG7Rzz)
+
+[![Recycler-Viewsitem2.jpg](https://i.postimg.cc/j5dztgDt/Recycler-Viewsitem2.jpg)](https://postimg.cc/PL9LMMbR)
+
+[![Recycler-Views-Item2-Onclick.jpg](https://i.postimg.cc/C5RkfRC2/Recycler-Views-Item2-Onclick.jpg)](https://postimg.cc/JHWGf423)
