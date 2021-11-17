@@ -1,6 +1,7 @@
 package com.example.taskmaster;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +50,22 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         body.setText(holder.task.getBody());
         state.setText(holder.task.getState());
 
+//db
+        String titleToHandle = title.getText().toString();
+        String descToHandle = body.getText().toString();
+        String statetodaaaamn = state.getText().toString();
 
+        title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(),MainActivity4.class);
+                i.putExtra("taskTitle", titleToHandle);
+                i.putExtra("desc", descToHandle);
+                i.putExtra("state", statetodaaaamn);
+
+                v.getContext().startActivity(i);
+            }
+        });
 
     }
 

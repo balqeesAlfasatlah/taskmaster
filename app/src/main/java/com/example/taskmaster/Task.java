@@ -1,7 +1,21 @@
 package com.example.taskmaster;
 
-public class Task {
+import androidx.annotation.IdRes;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+@Entity
+public class Task {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     private String title;
     private String body;
     private String state;
