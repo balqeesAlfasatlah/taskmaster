@@ -62,3 +62,21 @@ The all tasks page should just be an image with a back button, it needs no funct
 [![Recycler-Viewsitem2.jpg](https://i.postimg.cc/j5dztgDt/Recycler-Viewsitem2.jpg)](https://postimg.cc/PL9LMMbR)
 
 [![Recycler-Views-Item2-Onclick.jpg](https://i.postimg.cc/C5RkfRC2/Recycler-Views-Item2-Onclick.jpg)](https://postimg.cc/JHWGf423)
+
+--- 
+
+# Lab: 29 - Room
+
+## Feature Tasks :
+
+1- Add Task Form : modify Add Task form to save the data entered in as a Task in the local database.
+
+[![addTask.jpg](https://i.postimg.cc/fWtvVy25/addTask.jpg)](https://postimg.cc/HjmMKYC7)
+
+2- Homepage : Refactor your homepage’s RecyclerView to display all Task entities in your database.
+
+[![newTask.jpg](https://i.postimg.cc/Pr1zMckw/newTask.jpg)](https://postimg.cc/bsNtymry)
+
+3- Detail Page : Ensure that the description and status of a tapped task are also displayed on the detail page, in addition to the title. 
+
+[![details.jpg](https://i.postimg.cc/mgwYvHkZ/details.jpg)](https://postimg.cc/JssHJtjS)

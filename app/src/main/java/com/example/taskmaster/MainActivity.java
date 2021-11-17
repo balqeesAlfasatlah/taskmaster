@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -18,6 +19,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     List<Task> allTasks = new ArrayList<Task>();
+    TaskRoomDatabase taskRoomDatabase;
     private TaskAdapter.RecyclerViewClickListener recyclerViewClickListener;
 
 
@@ -26,10 +28,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        taskRoomDatabase =  TaskRoomDatabase.getData(this);
 
-        allTasks.add(new Task("math","solve it","new"));
-        allTasks.add(new Task("english","solved","complete"));
-        allTasks.add(new Task("arabic","fix it","in progress"));
+//        allTasks.add(new Task("math","solve it","new"));
+//        allTasks.add(new Task("english","solved","complete"));
+//        allTasks.add(new Task("arabic","fix it","in progress"));
 
 
         Button goToActivityTwo = findViewById(R.id.addTaskBtn);
@@ -39,10 +42,19 @@ public class MainActivity extends AppCompatActivity {
 //        Button task3 = findViewById(R.id.task3btn);
         Button settingPage = findViewById(R.id.settingbtn);
 
-        setOnClickListener();
-        RecyclerView recyclerView = findViewById(R.id.recycleId);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new TaskAdapter(allTasks,recyclerViewClickListener));
+//        setOnClickListener();
+
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                allTasks = taskRoomDatabase.taskDao().getAll();
+                System.out.println(allTasks);
+                RecyclerView recyclerView = findViewById(R.id.recycleId);
+                recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+                recyclerView.setAdapter(new TaskAdapter(allTasks,recyclerViewClickListener));
+            }
+        });
+
 
 
 
@@ -105,6 +117,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v, int position) {
                 Intent intent = new Intent(getApplicationContext(),MainActivity4.class);
                 intent.putExtra("title",allTasks.get(position).getTitle());
+//                intent.putExtra("body",allTasks.get(position).getBody());
+//                intent.putExtra("state",allTasks.get(position).getState());
+
                 startActivity(intent);
             }
         };
@@ -117,5 +132,8 @@ public class MainActivity extends AppCompatActivity {
         String name = sharedPreferences.getString("usernameInput", "Balqees");
         TextView textView = findViewById(R.id.userInput);
         textView.setText(name);
+
+
+
     }
 }
