@@ -42,4 +42,11 @@ dependencies {
     def room_version = "2.3.0"
     implementation "androidx.room:room-runtime:2.3.0"
     annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    implementation 'com.amplifyframework:aws-api:1.30.0'
+    implementation 'com.amplifyframework:aws-datastore:1.30.0'
+
+    implementation 'com.amplifyframework:core:1.29.0'
+    implementation 'com.amplifyframework:aws-api:1.29.0'
+
 }
