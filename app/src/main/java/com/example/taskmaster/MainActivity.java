@@ -1,5 +1,6 @@
 package com.example.taskmaster;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,19 +9,31 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.preference.PreferenceManager;
+import android.service.controls.actions.ModeAction;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.amplifyframework.AmplifyException;
+import com.amplifyframework.api.aws.AWSApiPlugin;
+import com.amplifyframework.api.graphql.model.ModelMutation;
+import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.Task;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    List<Task> allTasks = new ArrayList<Task>();
-    TaskRoomDatabase taskRoomDatabase;
-    private TaskAdapter.RecyclerViewClickListener recyclerViewClickListener;
+
+
+//    private TaskAdapter.RecyclerViewClickListener recyclerViewClickListener;
 
 
     @Override
@@ -28,11 +41,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        taskRoomDatabase =  TaskRoomDatabase.getData(this);
+        // connect with server
+        try {
+            // Add these lines to add the AWSApiPlugin plugins
+            Amplify.addPlugin(new AWSApiPlugin());
+            Amplify.configure(getApplicationContext());
 
-//        allTasks.add(new Task("math","solve it","new"));
-//        allTasks.add(new Task("english","solved","complete"));
-//        allTasks.add(new Task("arabic","fix it","in progress"));
+            Log.i("TaskMaster", "Initialized Amplify");
+        } catch (AmplifyException error) {
+            Log.e("TaskMaster", "Could not initialize Amplify", error);
+        }
+
+
+
+
 
 
         Button goToActivityTwo = findViewById(R.id.addTaskBtn);
@@ -44,16 +66,16 @@ public class MainActivity extends AppCompatActivity {
 
 //        setOnClickListener();
 
-        AsyncTask.execute(new Runnable() {
-            @Override
-            public void run() {
-                allTasks = taskRoomDatabase.taskDao().getAll();
-                System.out.println(allTasks);
-                RecyclerView recyclerView = findViewById(R.id.recycleId);
-                recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-                recyclerView.setAdapter(new TaskAdapter(allTasks,recyclerViewClickListener));
-            }
-        });
+//        AsyncTask.execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                allTasks = taskRoomDatabase.taskDao().getAll();
+//                System.out.println(allTasks);
+//                RecyclerView recyclerView = findViewById(R.id.recycleId);
+//                recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+//                recyclerView.setAdapter(new TaskAdapter(allTasks,recyclerViewClickListener));
+//            }
+//        });
 
 
 
@@ -109,21 +131,27 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
     }
 
-    private void setOnClickListener() {
-        recyclerViewClickListener = new TaskAdapter.RecyclerViewClickListener() {
-            @Override
-            public void onClick(View v, int position) {
-                Intent intent = new Intent(getApplicationContext(),MainActivity4.class);
-                intent.putExtra("title",allTasks.get(position).getTitle());
-//                intent.putExtra("body",allTasks.get(position).getBody());
-//                intent.putExtra("state",allTasks.get(position).getState());
+//    private void setOnClickListener() {
+//        recyclerViewClickListener = new TaskAdapter.RecyclerViewClickListener() {
+//            @Override
+//            public void onClick(View v, int position) {
+//                Intent intent = new Intent(getApplicationContext(),MainActivity4.class);
+//               // intent.putExtra("title",allTasks.get(position).getTitle());
+////                intent.putExtra("body",allTasks.get(position).getBody());
+////                intent.putExtra("state",allTasks.get(position).getState());
+//
+//                startActivity(intent);
+//            }
+//        };
 
-                startActivity(intent);
-            }
-        };
-    }
+
+   // }
+
+
 
     @Override
     protected void onResume() {
@@ -133,6 +161,37 @@ public class MainActivity extends AppCompatActivity {
         TextView textView = findViewById(R.id.userInput);
         textView.setText(name);
 
+
+
+        RecyclerView recyclerView = findViewById(R.id.recycleId);
+
+        // to display
+
+        Handler handler = new Handler(Looper.getMainLooper(), new Handler.Callback() {
+
+            @Override
+            public boolean handleMessage(@NonNull Message message) {
+                recyclerView.getAdapter().notifyDataSetChanged();
+                return false;
+            }
+        });
+
+
+        List<Task> allTask = new ArrayList<Task>();
+
+        // to read from db, after the class we add coma and we write the condition)
+        Amplify.API.query(
+                ModelQuery.list(com.amplifyframework.datastore.generated.model.Task.class),
+                response -> {
+                    for (Task task : response.getData()) {
+                        allTask.add(task);
+                    }
+                    handler.sendEmptyMessage(1);
+                },
+                error -> Log.e("TaskMaster", error.toString(), error)
+        );
+        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        recyclerView.setAdapter(new TaskAdapter(allTask));
 
 
     }
