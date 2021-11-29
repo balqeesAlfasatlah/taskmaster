@@ -80,3 +80,29 @@ The all tasks page should just be an image with a back button, it needs no funct
 3- Detail Page : Ensure that the description and status of a tapped task are also displayed on the detail page, in addition to the title. 
 
 [![details.jpg](https://i.postimg.cc/mgwYvHkZ/details.jpg)](https://postimg.cc/JssHJtjS)
+
+
+
+## Lab: 32 - Amplify and DynamoDB
+
++ Feature Tasks :
+
+1- Tasks Are Cloudy :
+
+Using the amplify add api command, create a Task resource that replicates our existing Task schema. Update all references to the Task data to instead use AWS Amplify to access your data in DynamoDB instead of in Room.
+
+2- Add Task Form :
+
+Modify your Add Task form to save the data entered in as a Task to DynamoDB.
+
+3- Homepage :
+
+Refactor your homepage’s RecyclerView to display all Task entities in DynamoDB.
+
+[![lab32.jpg](https://i.postimg.cc/JhGKG7rW/lab32.jpg)](https://postimg.cc/nsfqWJ9d)
+
+[![lab32b.jpg](https://i.postimg.cc/9FbBbwzh/lab32b.jpg)](https://postimg.cc/2Vqv864c)
+
+[![lab32c.jpg](https://i.postimg.cc/J4pbZwd7/lab32c.jpg)](https://postimg.cc/RNn6xYB2)
+
+[![db.png](https://i.postimg.cc/3xnD4z9j/db.png)](https://postimg.cc/QFKMv42V)
