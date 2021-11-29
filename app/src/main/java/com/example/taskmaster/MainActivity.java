@@ -24,6 +24,7 @@ import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Task;
 import com.amplifyframework.datastore.generated.model.Team;
@@ -34,6 +35,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     String teamName = "";
+    Button signIn;
+    Button logout;
 
 //    private TaskAdapter.RecyclerViewClickListener recyclerViewClickListener;
 
@@ -44,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         try {
+            Amplify.addPlugin(new AWSCognitoAuthPlugin());
             Amplify.addPlugin(new AWSApiPlugin());
             Amplify.configure(getApplicationContext());
             Log.i("TaskMaster", "Initialized Amplify");
@@ -51,6 +55,10 @@ public class MainActivity extends AppCompatActivity {
             Log.e("TaskMaster", "Could not initialize Amplify", error);
         }
 
+        Amplify.Auth.fetchAuthSession(
+                result -> Log.i("AmplifyQuickstart", result.toString()),
+                error -> Log.e("AmplifyQuickstart", error.toString())
+        );
         //hard coded teams
 //        Team team1 = Team.builder().name("team1").build();
 //        Team team2 = Team.builder().name("team2").build();
@@ -77,6 +85,32 @@ public class MainActivity extends AppCompatActivity {
         Button goToActivityTwo = findViewById(R.id.addTaskBtn);
         Button goToActivityThree = findViewById(R.id.allTasksBtn);
         Button settingPage = findViewById(R.id.settingbtn);
+
+        signIn = findViewById(R.id.signbtn);
+        logout = findViewById(R.id.logoutbtn);
+
+        signIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Amplify.Auth.signInWithWebUI(
+                        MainActivity.this,
+                        result -> Log.i("AuthQuickStart", result.toString()),
+                        error -> Log.e("AuthQuickStart", error.toString())
+                );
+
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Amplify.Auth.signOut(
+                        () -> Log.i("AuthQuickstart", "Signed out successfully"),
+                        error -> Log.e("AuthQuickstart", error.toString())
+                );
+
+            }
+        });
 
 
 
@@ -166,6 +200,16 @@ public class MainActivity extends AppCompatActivity {
 
             recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
             recyclerView.setAdapter(new TaskAdapter(tasktoViewd));
+
+            Amplify.Auth.fetchAuthSession(
+                    result -> {
+                        if (result.isSignedIn()){
+                            signIn.setVisibility(View.INVISIBLE);
+                        }
+                        else logout.setVisibility(View.INVISIBLE);
+                    },
+                    error -> Log.e("AmplifyQuickstart", error.toString())
+            );
         }
 
 
