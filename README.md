@@ -106,3 +106,5 @@ Refactor your homepage’s RecyclerView to display all Task entities in DynamoDB
 [![lab32c.jpg](https://i.postimg.cc/J4pbZwd7/lab32c.jpg)](https://postimg.cc/RNn6xYB2)
 
 [![db.png](https://i.postimg.cc/3xnD4z9j/db.png)](https://postimg.cc/QFKMv42V)
+[![db.png](https://i.postimg.cc/3xnD4z9j/db.png)](https://postimg.cc/QFKMv42V)
+
