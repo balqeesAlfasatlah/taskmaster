@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             Log.e("TaskMaster", "Could not initialize Amplify", error);
         }
 
-       
+
 
         Amplify.Auth.fetchAuthSession(
                 result -> Log.i("AmplifyQuickstart", result.toString()),
