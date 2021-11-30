@@ -83,6 +83,7 @@ The all tasks page should just be an image with a back button, it needs no funct
 
 
 
+
 ## Lab: 32 - Amplify and DynamoDB
 
 + Feature Tasks :
@@ -106,6 +107,7 @@ Refactor your homepage’s RecyclerView to display all Task entities in DynamoDB
 [![lab32c.jpg](https://i.postimg.cc/J4pbZwd7/lab32c.jpg)](https://postimg.cc/RNn6xYB2)
 
 [![db.png](https://i.postimg.cc/3xnD4z9j/db.png)](https://postimg.cc/QFKMv42V)
+
 
 ## Lab: 33 - Related Data
 
@@ -149,3 +151,4 @@ Refactor your homepage’s RecyclerView to display all Task entities in DynamoDB
     [![lab36b.jpg](https://i.postimg.cc/J0Q34jt2/lab36b.jpg)](https://postimg.cc/hQfQ2zLL)
 
     [![lab36c.jpg](https://i.postimg.cc/L8xyVF9b/lab36c.jpg)](https://postimg.cc/w1sc6PsX)
+
