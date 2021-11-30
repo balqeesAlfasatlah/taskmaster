@@ -36,28 +36,28 @@ public final class Team implements Model {
   public String getId() {
       return id;
   }
-
+  
   public String getName() {
       return name;
   }
-
+  
   public List<Task> getTasks() {
       return Tasks;
   }
-
+  
   public Temporal.DateTime getCreatedAt() {
       return createdAt;
   }
-
+  
   public Temporal.DateTime getUpdatedAt() {
       return updatedAt;
   }
-
+  
   private Team(String id, String name) {
     this.id = id;
     this.name = name;
   }
-
+  
   @Override
    public boolean equals(Object obj) {
       if (this == obj) {
@@ -72,7 +72,7 @@ public final class Team implements Model {
               ObjectsCompat.equals(getUpdatedAt(), team.getUpdatedAt());
       }
   }
-
+  
   @Override
    public int hashCode() {
     return new StringBuilder()
@@ -83,7 +83,7 @@ public final class Team implements Model {
       .toString()
       .hashCode();
   }
-
+  
   @Override
    public String toString() {
     return new StringBuilder()
@@ -95,12 +95,12 @@ public final class Team implements Model {
       .append("}")
       .toString();
   }
-
+  
   public static BuildStep builder() {
       return new Builder();
   }
-
-  /**
+  
+  /** 
    * WARNING: This method should not be used to build an instance of this object for a CREATE mutation.
    * This is a convenience method to return an instance of the object with only its ID populated
    * to be used in the context of a parameter in a delete mutation or referencing a foreign key
@@ -114,7 +114,7 @@ public final class Team implements Model {
       null
     );
   }
-
+  
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
       name);
@@ -124,7 +124,7 @@ public final class Team implements Model {
     BuildStep id(String id);
     BuildStep name(String name);
   }
-
+  
 
   public static class Builder implements BuildStep {
     private String id;
@@ -132,19 +132,19 @@ public final class Team implements Model {
     @Override
      public Team build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
-
+        
         return new Team(
           id,
           name);
     }
-
+    
     @Override
      public BuildStep name(String name) {
         this.name = name;
         return this;
     }
-
-    /**
+    
+    /** 
      * @param id id
      * @return Current Builder instance, for fluent method chaining
      */
@@ -153,18 +153,18 @@ public final class Team implements Model {
         return this;
     }
   }
-
+  
 
   public final class CopyOfBuilder extends Builder {
     private CopyOfBuilder(String id, String name) {
       super.id(id);
       super.name(name);
     }
-
+    
     @Override
      public CopyOfBuilder name(String name) {
       return (CopyOfBuilder) super.name(name);
     }
   }
-
+  
 }

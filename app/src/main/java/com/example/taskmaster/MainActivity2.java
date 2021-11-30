@@ -2,10 +2,12 @@ package com.example.taskmaster;
 import com.amplifyframework.datastore.generated.model.Team;
 
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,12 +24,18 @@ import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Task;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity2 extends AppCompatActivity {
     //   private TaskRoomDatabase db;
     //String teamName;
+    private Intent chooseFile;
+    private String fileName;
+    private Uri fileData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,12 +78,40 @@ public class MainActivity2 extends AppCompatActivity {
 
         Log.i("teamlist", teamList.toString());
 
+
+
+        Button addFile = findViewById(R.id.uploadButton);
+        addFile.setOnClickListener(v -> {
+
+            chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
+            chooseFile.setType("*/*");
+            chooseFile = Intent.createChooser(chooseFile, "Choose a file");
+            startActivityForResult(chooseFile, 1234);
+
+        });
+
+
+
+
         //**/
         submitted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-
+                if (fileData != null) {
+                    try {
+                        InputStream exampleInputStream = getContentResolver().openInputStream(fileData);
+                        Amplify.Storage.uploadInputStream(
+                                fileName,
+                                exampleInputStream,
+                                result -> Log.i("TaskMaster", "Successfully uploaded: " + result.getKey()),
+                                storageFailure -> Log.e("TaskMaster", "Upload failed", storageFailure)
+                        );
+                    } catch (FileNotFoundException error) {
+                        Log.e("TaskMaster", "Could not find file to open for input stream.", error);
+                    }
+                }
+                //**************/
 
                 RadioGroup radioGroup = findViewById(R.id.group2);
                 int chosenButtonId = radioGroup.getCheckedRadioButtonId();
@@ -93,6 +129,7 @@ public class MainActivity2 extends AppCompatActivity {
                                     .body(body.getText().toString())
                                     .state(state.getText().toString())
                                     .teamId(response1.getData().getId())
+                                    .fileKey(fileName)
                                     .build();
 
                             Amplify.API.mutate(
@@ -107,6 +144,16 @@ public class MainActivity2 extends AppCompatActivity {
                 startActivity(goToHome);
             }
         });
+
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        File file = new File(data.getData().getPath());
+        fileName = file.getName();
+        fileData = data.getData();
     }
 
 }

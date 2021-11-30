@@ -28,12 +28,17 @@ import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Task;
 import com.amplifyframework.datastore.generated.model.Team;
+import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG ="" ;
     String teamName = "";
     Button signIn;
     Button logout;
@@ -47,15 +52,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         try {
-            Amplify.addPlugin(new AWSCognitoAuthPlugin());
+
+
             Amplify.addPlugin(new AWSApiPlugin());
+            Amplify.addPlugin(new AWSCognitoAuthPlugin());
+            Amplify.addPlugin(new AWSS3StoragePlugin());
             Amplify.configure(getApplicationContext());
             Log.i("TaskMaster", "Initialized Amplify");
         } catch (AmplifyException error) {
             Log.e("TaskMaster", "Could not initialize Amplify", error);
         }
 
-
+//  uploadFileToS3();
 
         Amplify.Auth.fetchAuthSession(
                 result -> Log.i("AmplifyQuickstart", result.toString()),
@@ -144,8 +152,20 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
+//    private void uploadFileToS3() {
+//        File file = new File(getApplicationContext().getFilesDir(),"myFile");
+//        try {
+//            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
+//            bufferedWriter.append("this is my file");
+//            bufferedWriter.close();
+//
+//        }catch (Exception e){
+//            Log.e(TAG, "uploadFileToS3: failed" + e.toString() );
+//
+//        }
+//
+//        Amplify.API.mutate()
+//    }
 
 
     @Override

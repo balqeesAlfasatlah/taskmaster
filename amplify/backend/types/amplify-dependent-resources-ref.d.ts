@@ -17,5 +17,11 @@ export type AmplifyDependentResourcesAttributes = {
             "AppClientIDWeb": "string",
             "AppClientID": "string"
         }
+    },
+    "storage": {
+        "s3balqees": {
+            "BucketName": "string",
+            "Region": "string"
+        }
     }
 }
