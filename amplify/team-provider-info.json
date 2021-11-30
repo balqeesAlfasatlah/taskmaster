@@ -23,6 +23,12 @@
       "StackName": "amplify-taskmaster-balqees-144053",
       "StackId": "arn:aws:cloudformation:us-east-1:414211320575:stack/amplify-taskmaster-balqees-144053/464460d0-4f7f-11ec-88f8-1207824b08bd",
       "AmplifyAppId": "d39y38xt6uoipo"
+    },
+    "categories": {
+      "auth": {
+        "taskmasterbalqeesd0a7394e": {},
+        "true": {}
+      }
     }
   }
 }

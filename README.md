@@ -82,6 +82,8 @@ The all tasks page should just be an image with a back button, it needs no funct
 [![details.jpg](https://i.postimg.cc/mgwYvHkZ/details.jpg)](https://postimg.cc/JssHJtjS)
 
 
+
+
 ## Lab: 32 - Amplify and DynamoDB
 
 + Feature Tasks :
@@ -105,3 +107,67 @@ Refactor your homepage’s RecyclerView to display all Task entities in DynamoDB
 [![lab32c.jpg](https://i.postimg.cc/J4pbZwd7/lab32c.jpg)](https://postimg.cc/RNn6xYB2)
 
 [![db.png](https://i.postimg.cc/3xnD4z9j/db.png)](https://postimg.cc/QFKMv42V)
+
+
+## Lab: 33 - Related Data
+
++ Feature Tasks :
+
+   1-  Tasks Are Owned By Teams :
+
+   + Create a second entity for a team, which has a name and a list of tasks. Update your tasks to be owned by a team.
+
+   + Manually create three teams by running a mutation exactly three times in your code. (You do NOT need to allow the user to create new teams.)
+
+    2- Add Task Form :
+
+    Modify your Add Task form to include either a Spinner or Radio Buttons for which team that task belongs to.
+
+    3- Settings Page :
+
+    In addition to a username, allow the user to choose their team on the Settings page. Use that Team to display only that team’s tasks on the homepage.
+
+
+[![lab33a.jpg](https://i.postimg.cc/V6HVgQzR/lab33a.jpg)](https://postimg.cc/ZBpHYQBB)
+
+[![lab33b.jpg](https://i.postimg.cc/RVfvWGT8/lab33b.jpg)](https://postimg.cc/pp2w7f4Y)
+
+[![lab33c.jpg](https://i.postimg.cc/cJ1W5WNy/lab33c.jpg)](https://postimg.cc/BjzRXd6M)
+
+## Lab: 36 - Cognito
+
++ Feature Tasks :
+
+    1- User Login:
+
+    Add Cognito to your Amplify setup. Add in user login and sign up flows to your application, using Cognito’s pre-built UI as appropriate. Display the logged in user’s username somewhere relevant in your app.
+
+    2- User Logout
+
+    Allow users to log out of your application.
+
+    [![lab36a.jpg](https://i.postimg.cc/kGL1KQ7X/lab36a.jpg)](https://postimg.cc/Wq6wPJDQ)
+
+    [![lab36b.jpg](https://i.postimg.cc/J0Q34jt2/lab36b.jpg)](https://postimg.cc/hQfQ2zLL)
+
+    [![lab36c.jpg](https://i.postimg.cc/L8xyVF9b/lab36c.jpg)](https://postimg.cc/w1sc6PsX)
+
+
+## Lab: 37 - S3
+
++ Feature Tasks :
+
+   1- Uploads :
+
+    On the “Add a Task” activity, allow users to optionally select a file to attach to that task. If a user attaches a file to a task, that file should be uploaded to S3, and associated with that task.
+
+   2- Displaying Files :
+
+    On the Task detail activity, if there is a file that is an image associated with a particular Task, that image should be displayed within that activity. (If the file is any other type, you should display a link to it.)
+
+    [![lab37a.jpg](https://i.postimg.cc/bvnV50nX/lab37a.jpg)](https://postimg.cc/068CMwZZ)
+
+    [![lab37b.jpg](https://i.postimg.cc/j2x8CGFK/lab37b.jpg)](https://postimg.cc/bD50BFPF)
+
+    [![lab37c.jpg](https://i.postimg.cc/brmmn37n/lab37c.jpg)](https://postimg.cc/ct87yM41)
+

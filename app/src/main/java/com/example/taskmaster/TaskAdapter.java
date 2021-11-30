@@ -143,6 +143,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                     String taskTitle=holder.task.getTitle();
                     Intent goToDetailsPage=new Intent(v.getContext(),MainActivity4.class);
                     goToDetailsPage.putExtra("task detail",taskTitle);
+                    goToDetailsPage.putExtra("taskFileKey",holder.task.getFileKey());
                     v.getContext().startActivity(goToDetailsPage);
                 }
             });
